@@ -4,22 +4,41 @@ import About from './About'; // Import the About component
 import Home from './Home';
 import Cardview from "./cardview"
 import Login from './Login';
+import './Nav.css'
 const NotFound = () => <h2>404 Not Found</h2>;
 
 const Nav = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
+        <nav style={{ backgroundColor: 'lightblue', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+          <ul style={{ listStyleType: 'none', display: 'flex', justifyContent: 'flex-start', padding: '1%', width: '30%' }}>
+            <li style={{ padding: '1%', marginLeft: '10%' }}>
+              <Link to="/" className="fancy">
+                <span className="text">Home</span>
+                <span className="top-key"></span>
+                <span className="bottom-key-1"></span>
+                <span className="bottom-key-2"></span>
+              </Link>
             </li>
-            <li>
-              <Link to="/about">About</Link>
+            <li style={{ padding: '1%' }}>
+              <Link to="/about" className="fancy">
+                <span className="text">About</span>
+                <span className="top-key"></span>
+                <span className="bottom-key-1"></span>
+                <span className="bottom-key-2"></span>
+              </Link>
             </li>
-            <li>
-              <Login />
+          </ul>
+          <h2 style={{ padding: '1%', width: '30%', textAlign: 'center' }}>FlashCard App</h2>
+          <ul style={{ listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', padding: '1%', width: '30%' }}>
+            <li style={{ padding: '1%', marginRight: '10%' }}>
+              <Login className="fancy">
+                <span className="text">Login</span>
+                <span className="top-key"></span>
+                <span className="bottom-key-1"></span>
+                <span className="bottom-key-2"></span>
+              </Login>
             </li>
           </ul>
         </nav>

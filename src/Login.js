@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './Login.css';
+
 const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [username, setUsername] = useState('');
@@ -25,33 +26,36 @@ const LoginModal = () => {
 
   return (
     <div>
-      <button onClick={openModal}>Login</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Login Modal"
-      >
+      <button onClick={openModal} className="fancy">
+        <span className="text">Login</span>
+        <span className="top-key"></span>
+        <span className="bottom-key-1"></span>
+        <span className="bottom-key-2"></span>
+      </button>
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Login Modal">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <div>
             <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
           <div>
             <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <button type="submit">Submit</button>
+          <button onClick={closeModal} className="fancy">
+            <span className="text">Close</span>
+            <span className="top-key"></span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
+          </button>
+          <button type="submit" className="fancy">
+            <span className="text">Submit</span>
+            <span className="top-key"></span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </Modal>
     </div>
   );
