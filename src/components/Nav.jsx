@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import About from "./About"; // Import the About component
 import Home from "./Home";
+import Cardview from "./cardview";
 import Login from "./Login";
 import "./Nav.css";
 const NotFound = () => <h2>404 Not Found</h2>;
@@ -69,6 +70,7 @@ const Nav = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/cardview/:topic" element={<Cardview />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
