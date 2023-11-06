@@ -23,9 +23,24 @@ const LoginModal = () => {
     // Add your login logic here
     // e.g., sending the data to a server, handling authentication, etc.
   };
-
+  async function getUserInfo() {
+    try {
+      const response = await fetch("/.auth/me");
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error("No profile could be found");
+      return undefined;
+    }
+  }
   return (
     <div>
+      {!getUserInfo ? (
+        <span className="text"></span>
+      ) : (
+        <span className="text">LOGGED IN </span>
+      )}
       <button onClick={openModal} className="fancy">
         <span className="text">Login</span>
         <span className="top-key"></span>
