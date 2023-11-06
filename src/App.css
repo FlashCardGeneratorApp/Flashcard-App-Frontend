@@ -71,7 +71,7 @@ td {
 
 /* Set a base font and font color */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #333;
@@ -138,9 +138,9 @@ button:hover,
 }
 
 /* Style for input fields */
-input[type='text'],
-input[type='email'],
-input[type='password'] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
