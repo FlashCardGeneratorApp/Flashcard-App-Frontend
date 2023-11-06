@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import './cardview.css'
+import "./cardview.css";
+
 const Question_List = [
   {
     question: "What dynasty did Qin Shi Huang Found?",
@@ -15,12 +16,13 @@ const Question_List = [
 
 const Cardview = () => {
   const [questionList, setQuestionList] = useState([]);
+  const [clickedIndex, setClickedIndex] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch("/api/question");
+        const response = await fetch("/api/question"); //! Change to Django endpoint for AI Generation
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -29,7 +31,7 @@ const Cardview = () => {
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
-        setQuestionList(Question_List); // Setting default data on failure
+        setQuestionList(Question_List); //! Setting default data on failure, remove when endpoint exists
         setIsLoading(false);
       }
     };
@@ -38,7 +40,8 @@ const Cardview = () => {
   }, []);
 
   const handleClick = (index) => {
-    console.log("Clicked on card with index:", index);
+    console.log("Clicked on card with index:", index); // TODO: Commit to new Database
+    setClickedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   if (isLoading) {
@@ -48,7 +51,11 @@ const Cardview = () => {
   return (
     <div className="card-container">
       {questionList.map((item, index) => (
-        <div key={index} className="card" onClick={() => handleClick(index)}>
+        <div
+          key={index}
+          className={clickedIndex === index ? "card clicked" : "card"}
+          onClick={() => handleClick(index)}
+        >
           <h3>{item.question}</h3>
           <ul className="options-list">
             {item.options.map((option, optionIndex) => (
@@ -67,5 +74,6 @@ const Cardview = () => {
     </div>
   );
 };
+
 
 export default Cardview;
