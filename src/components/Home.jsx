@@ -32,7 +32,7 @@ const Home = () => {
         const response = await fetch('/.auth/me');
         if (response.ok) {
           const data = await response.json();
-          setIsLoggedIn(data.clientPrincipal !== null); // Update this line
+          setIsLoggedIn(data !== null);
         } else {
           setIsLoggedIn(false);
         }
@@ -41,10 +41,9 @@ const Home = () => {
         setIsLoggedIn(false);
       }
     };
-  
+
     checkLoginStatus();
   }, []);
-  
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
