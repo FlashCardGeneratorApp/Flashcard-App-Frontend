@@ -34,9 +34,15 @@ const LoginModal = () => {
     setModalIsOpen(false);
   };
   async function Logout() {
-    navigate("/.auth/Logout"); // Change from history.push to navigate
-    navigate("/")
+    try {
+      await fetch("/.auth/logout");
+      setIsLoggedIn(false);  // Update the local state to reflect the logout
+      navigate("/");  // Navigate to the homepage
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
+  
   
   async function getUserInfo() {
     try {
