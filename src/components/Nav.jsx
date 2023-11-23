@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import About from "./About"; // Import the About component
+import About from "./About";
 import Home from "./Home";
 import Cardview from "./cardview";
 import Login from "./Login";
@@ -9,24 +9,25 @@ import "./Nav.css";
 const NotFound = () => <h2>404 Not Found</h2>;
 
 const Nav = () => {
-  const Loggedin = async () => {
-    try {
-      const response = await fetch("/.auth/me");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-      if (response.ok) {
-        const data = await response.json();
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch("/.auth/me");
 
-        // Check if clientPrincipal exists and is not null
-        return !!data.clientPrincipal; // Returns true if clientPrincipal exists and is not null
+        if (response.ok) {
+          const data = await response.json();
+          setIsLoggedIn(!!data.clientPrincipal);
+        }
+      } catch (error) {
+        console.error("Error fetching authentication information:", error);
       }
+    };
 
-      // If clientPrincipal doesn't exist or there's an error
-      return false;
-    } catch (error) {
-      console.error("Error fetching authentication information:", error);
-      return false;
-    }
-  };
+    checkLoginStatus();
+  }, []);
+
   return (
     <div>
       <nav
@@ -34,7 +35,7 @@ const Nav = () => {
           backgroundColor: "lightblue",
           width: "100%",
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <ul
@@ -43,7 +44,7 @@ const Nav = () => {
             display: "flex",
             justifyContent: "flex-start",
             padding: "1%",
-            width: "30%"
+            width: "30%",
           }}
         >
           <li style={{ padding: "1%", marginLeft: "10%" }}>
@@ -62,7 +63,7 @@ const Nav = () => {
               <span className="bottom-key-2" />
             </Link>
           </li>
-          {Loggedin() ? (
+          {isLoggedIn && (
             <li style={{ padding: "1%" }}>
               <Link to="/quiz" className="fancy">
                 <span className="text">Quiz</span>
@@ -71,7 +72,7 @@ const Nav = () => {
                 <span className="bottom-key-2" />
               </Link>
             </li>
-          ) : null}
+          )}
         </ul>
         <h2 style={{ padding: "1%", width: "30%", textAlign: "center" }}>
           FlashCard App
@@ -82,7 +83,7 @@ const Nav = () => {
             display: "flex",
             justifyContent: "flex-end",
             padding: "1%",
-            width: "30%"
+            width: "30%",
           }}
         >
           <li style={{ padding: "1%", marginRight: "10%" }}>
