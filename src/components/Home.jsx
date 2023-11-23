@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   // State to store the entered topic
   const [topic, setTopic] = useState('');
-  // State to verify if user is logged in or not
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // React Router hook for navigation
   const navigate = useNavigate(); // Change from useHistory to useNavigate
 
@@ -26,19 +24,19 @@ const Home = () => {
     navigate(`/cardview/${topic}`); // Change from history.push to navigate
   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const response = await fetch('/.auth/me');
+        const response = await fetch("/.auth/me");
+
         if (response.ok) {
           const data = await response.json();
-          setIsLoggedIn(data !== null);
-        } else {
-          setIsLoggedIn(false);
+          setIsLoggedIn(!!data.clientPrincipal);
         }
       } catch (error) {
-        console.error('Error checking login status:', error);
-        setIsLoggedIn(false);
+        console.error("Error fetching authentication information:", error);
       }
     };
 
