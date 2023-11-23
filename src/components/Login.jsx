@@ -34,7 +34,7 @@ const LoginModal = () => {
     setModalIsOpen(false);
   };
   async function Logout() {
-    navigate("/.auth/logout"); // Change from history.push to navigate
+    navigate("/.auth/Logout"); // Change from history.push to navigate
   }
   
   async function getUserInfo() {
@@ -51,21 +51,21 @@ const LoginModal = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <span className="text"></span>
-      ) : (
         <button onClick={Logout} className="fancy">
-        <span className="text">Logout</span>
-        <span className="top-key"></span>
-        <span className="bottom-key-1"></span>
-        <span className="bottom-key-2"></span>
-      </button>
+          <span className="text">Logout</span>
+          <span className="top-key"></span>
+          <span className="bottom-key-1"></span>
+          <span className="bottom-key-2"></span>
+        </button>
+      ) : null}
+      {!isLoggedIn && (
+        <button onClick={openModal} className="fancy">
+          <span className="text">Login</span>
+          <span className="top-key"></span>
+          <span className="bottom-key-1"></span>
+          <span className="bottom-key-2"></span>
+        </button>
       )}
-      <button onClick={openModal} className="fancy">
-        <span className="text">Login</span>
-        <span className="top-key"></span>
-        <span className="bottom-key-1"></span>
-        <span className="bottom-key-2"></span>
-      </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -94,6 +94,10 @@ const LoginModal = () => {
       </Modal>
     </div>
   );
+  
 };
 
 export default LoginModal;
+
+
+
