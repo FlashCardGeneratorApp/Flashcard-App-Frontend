@@ -7,8 +7,8 @@ const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Change from useHistory to useNavigate
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate(); // Change from useHistory to useNavigate
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -51,21 +51,20 @@ const LoginModal = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <span className="text"></span>
-      ) : (
-        <button onClick={Logout} className="fancy">
+      <button onClick={Logout} className="fancy">
         <span className="text">Logout</span>
         <span className="top-key"></span>
         <span className="bottom-key-1"></span>
         <span className="bottom-key-2"></span>
       </button>
-      )}
+    ) : (
       <button onClick={openModal} className="fancy">
         <span className="text">Login</span>
         <span className="top-key"></span>
         <span className="bottom-key-1"></span>
         <span className="bottom-key-2"></span>
       </button>
+    )}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
