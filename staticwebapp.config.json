@@ -2,7 +2,13 @@
     "routes": [
         {
             "route": "/api/*",
+            "allowedRoles": ["authenticated"]
+        },
+        {
             "route": "/cardview/*",
+            "allowedRoles": ["authenticated"]
+        },
+        {
             "route": "/quiz",
             "allowedRoles": ["authenticated"]
         }

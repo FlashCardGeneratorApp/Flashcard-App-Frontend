@@ -34,6 +34,8 @@ const Home = () => {
         if (response.ok) {
           const data = await response.json();
           setIsLoggedIn(!!data.clientPrincipal);
+        } else {
+          setIsLoggedIn(false);
         }
       } catch (error) {
         console.error("Error fetching authentication information:", error);
