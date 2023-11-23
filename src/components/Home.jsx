@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'; // Import useState from React
+import "./Home.css";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -48,23 +49,29 @@ const Home = () => {
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
       {isLoggedIn ? (
         <p style={{ margin: 'auto', width: '50%', textAlign: 'center' }}>
-          <input
-            style={{ width: '100%', height: '40px' }}
-            placeholder="Enter a topic you would like to learn..."
-            value={topic}
-            onChange={handleInputChange}
-          />
-          <button
-            type="submit"
+          <div class="input-wrapper">
+          <input style={{ width: '100%', height: '40px' }} 
+                type="text" placeholder="Enter a topic you would like to learn..." 
+                name="text" 
+                class="input" 
+                value={topic} 
+                onChange={handleInputChange}/>
+          </div>
+          
+          <button class="button-container" 
+          type="submit"
             style={{
-              width: '100%',
-              height: '40px',
-              backgroundColor: 'lightblue',
             }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+            onClick={handleSubmit}>
+  <span class="circle circle1"></span>
+  <span class="circle circle2"></span>
+  <span class="circle circle3"></span>
+  <span class="circle circle4"></span>
+  <span class="circle circle5"></span>
+  <span class="text">Submit</span>
+</button>
+
+
         </p>
       ) : (
         <div>
