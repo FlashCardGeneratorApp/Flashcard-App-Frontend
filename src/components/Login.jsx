@@ -35,7 +35,7 @@ const LoginModal = () => {
   };
   async function Logout() {
     try {
-      await fetch("/.auth/logout");
+      await navigate("/.auth/logout");
       setIsLoggedIn(false);  // Update the local state to reflect the logout
       navigate("/");  // Navigate to the homepage
     } catch (error) {
