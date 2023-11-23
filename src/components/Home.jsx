@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      {/* {isLoggedIn ? ( */}
+      {isLoggedIn ? (
         <p style={{ margin: 'auto', width: '50%', textAlign: 'center' }}>
           <div class="input-wrapper">
           <input style={{ width: '100%', height: '40px' }} 
@@ -73,11 +73,11 @@ const Home = () => {
 
 
         </p>
-      {/* ) : (
+      ) : (
         <div>
           Insert generic homepage content for non-logged in user
         </div>
-      )} */}
+      )}
     </div>
   );
 };
