@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "./Login.css";
+import { Navigate } from "react-router-dom";
 
 const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate(); // Change from useHistory to useNavigate
+  
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -14,15 +16,10 @@ const LoginModal = () => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
-    // Add your login logic here
-    // e.g., sending the data to a server, handling authentication, etc.
-  };
+  async function Logout() {
+    navigate("/.auth/logout"); // Change from history.push to navigate
+  }
+  
   async function getUserInfo() {
     try {
       const response = await fetch("/.auth/me");
@@ -39,7 +36,12 @@ const LoginModal = () => {
       {!getUserInfo ? (
         <span className="text"></span>
       ) : (
-        <span className="text">LOGGED IN </span>
+        <button onClick={Logout} className="fancy">
+        <span className="text">Logout</span>
+        <span className="top-key"></span>
+        <span className="bottom-key-1"></span>
+        <span className="bottom-key-2"></span>
+      </button>
       )}
       <button onClick={openModal} className="fancy">
         <span className="text">Login</span>
