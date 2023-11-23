@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 
 const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -34,7 +34,7 @@ const LoginModal = () => {
     setModalIsOpen(false);
   };
   async function Logout() {
-    navigate("/.auth/Logout"); // Change from history.push to navigate
+    redirect("/.auth/Logout"); // Change from history.push to navigate
   }
   
   async function getUserInfo() {
