@@ -16,10 +16,8 @@ const Nav = () => {
       if (response.ok) {
         const data = await response.json();
 
-        // Check if clientPrincipal exists
-        if (data.clientPrincipal) {
-          return true;
-        }
+        // Check if clientPrincipal exists and is not null
+        return !!data.clientPrincipal; // Returns true if clientPrincipal exists and is not null
       }
 
       // If clientPrincipal doesn't exist or there's an error
@@ -29,7 +27,6 @@ const Nav = () => {
       return false;
     }
   };
-
   return (
     <div>
       <nav
@@ -65,16 +62,16 @@ const Nav = () => {
               <span className="bottom-key-2" />
             </Link>
           </li>
-          {Loggedin()
-            ? <li style={{ padding: "1%" }}>
-                <Link to="/quiz" className="fancy">
-                  <span className="text">Quiz</span>
-                  <span className="top-key" />
-                  <span className="bottom-key-1" />
-                  <span className="bottom-key-2" />
-                </Link>
-              </li>
-            : null}
+          {Loggedin() ? (
+            <li style={{ padding: "1%" }}>
+              <Link to="/quiz" className="fancy">
+                <span className="text">Quiz</span>
+                <span className="top-key" />
+                <span className="bottom-key-1" />
+                <span className="bottom-key-2" />
+              </Link>
+            </li>
+          ) : null}
         </ul>
         <h2 style={{ padding: "1%", width: "30%", textAlign: "center" }}>
           FlashCard App
