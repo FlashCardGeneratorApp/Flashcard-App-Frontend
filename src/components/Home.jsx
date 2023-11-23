@@ -32,7 +32,7 @@ const Home = () => {
         const response = await fetch('/.auth/me');
         if (response.ok) {
           const data = await response.json();
-          setIsLoggedIn(data !== null);
+          setIsLoggedIn(!!data.clientPrincipal);
         } else {
           setIsLoggedIn(false);
         }
