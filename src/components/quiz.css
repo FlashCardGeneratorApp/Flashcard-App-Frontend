@@ -1,0 +1,48 @@
+.content {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px; /* Adjust the maximum width as needed */
+    height: 100vh; /* Set a specific height if needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  
+  .card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .options-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .option,
+  .correct-option,
+  .incorrect-option {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .correct-option {
+    background-color: #a3f1a3;
+  }
+  
+  .incorrect-option {
+    background-color: #ff9999;
+  }
+  
+  .Button-Flex {
+    margin-top: 20px;
+  }
+  
+  

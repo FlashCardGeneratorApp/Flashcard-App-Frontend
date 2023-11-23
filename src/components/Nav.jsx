@@ -4,6 +4,7 @@ import About from "./About"; // Import the About component
 import Home from "./Home";
 import Cardview from "./cardview";
 import Login from "./Login";
+import Quiz from "./quiz";
 import "./Nav.css";
 const NotFound = () => <h2>404 Not Found</h2>;
 
@@ -71,6 +72,7 @@ const Nav = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cardview/:topic" element={<Cardview />} />
+        <Route path="/quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
