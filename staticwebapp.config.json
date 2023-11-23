@@ -2,6 +2,8 @@
     "routes": [
         {
             "route": "/api/*",
+            "route": "/cardview/*",
+            "route": "/quiz",
             "allowedRoles": ["authenticated"]
         }
     ],
