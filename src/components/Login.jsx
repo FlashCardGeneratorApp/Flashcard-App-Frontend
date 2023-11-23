@@ -34,7 +34,8 @@ const LoginModal = () => {
     setModalIsOpen(false);
   };
   async function Logout() {
-    redirect("/.auth/Logout"); // Change from history.push to navigate
+    navigate("/.auth/Logout"); // Change from history.push to navigate
+    navigate("/")
   }
   
   async function getUserInfo() {
