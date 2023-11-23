@@ -1,0 +1,72 @@
+.input-wrapper input {
+    background-color: #eee;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 13em;
+    border-radius: 1rem;
+    color: lightcoral;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+  }
+  
+  .input-wrapper input:focus {
+    outline-color: lightblue;
+  }
+
+  .button-container {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: #171717;
+    padding: 1em 2em;
+    border: none;
+    border-radius: .6rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .button-container .circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: lightblue;
+    border-radius: 50%;
+    transition: .6s ease;
+  }
+  
+  .button-container .circle:nth-child(6) {
+    position: relative;
+  }
+  
+  .button-container .circle:nth-child(1) {
+    transform: translate(-3.3em, -4em);
+  }
+  
+  .button-container .circle:nth-child(2) {
+    transform: translate(-6em, 1.3em);
+  }
+  
+  .button-container .circle:nth-child(3) {
+    transform: translate(-.2em, 1.8em);
+  }
+  
+  .button-container .circle:nth-child(4) {
+    transform: translate(3.5em, 1.4em);
+  }
+  
+  .button-container .circle:nth-child(5) {
+    transform: translate(3.5em, -3.8em);
+  }
+  
+  .button-container:hover .circle:not(:nth-child(6)) {
+    transform: translate(-50%, -50%) scale(4);
+    transition: 1.5s ease;
+  }
+  
+  .button-container:hover .text {
+    color: black;
+  }
