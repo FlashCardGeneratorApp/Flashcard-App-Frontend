@@ -35,7 +35,7 @@ const LoginModal = () => {
   };
   async function Logout() {
     try {
-      window.location.href = "/.auth/Logout?post_logout_redirect_uri=/";
+      window.location.href = "/.auth/logout?post_logout_redirect_uri=/";
       setIsLoggedIn(false);  // Update the local state to reflect the logout
     } catch (error) {
       console.error('Error during logout:', error);
