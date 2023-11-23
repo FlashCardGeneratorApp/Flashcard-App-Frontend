@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./Login.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Change from useHistory to useNavigate
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch("/.auth/me");
+
+        if (response.ok) {
+          const data = await response.json();
+          setIsLoggedIn(!!data.clientPrincipal);
+        }
+      } catch (error) {
+        console.error("Error fetching authentication information:", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -33,7 +50,7 @@ const LoginModal = () => {
   }
   return (
     <div>
-      {!getUserInfo ? (
+      {isLoggedIn ? (
         <span className="text"></span>
       ) : (
         <button onClick={Logout} className="fancy">
