@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./cardview.css";
 const userinfo = await fetch("/.auth/me") 
 const userID = userinfo.userId
+console.log(userID)
 const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
