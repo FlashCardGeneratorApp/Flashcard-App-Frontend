@@ -77,7 +77,6 @@ const Cardview = () => {
 
   return (
     <content>
-      <h2>Topic: {topic}</h2>
       <div className="card-container">
         {questionList.map((item, index) => (
           <div
@@ -102,8 +101,7 @@ const Cardview = () => {
         ))}
       </div>
       <div className="Button-Flex">
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button class="btn btn-danger" onClick={handleSubmit}>Delete</button>
       </div>
     </content>
   );
