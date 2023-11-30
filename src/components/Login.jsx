@@ -18,6 +18,7 @@ const LoginModal = () => {
         if (response.ok) {
           const data = await response.json();
           setIsLoggedIn(!!data.clientPrincipal);
+          localStorage.setItem("user-id", data.clientPrincipal.userId)
         }
       } catch (error) {
         console.error("Error fetching authentication information:", error);
@@ -35,6 +36,7 @@ const LoginModal = () => {
   };
   async function Logout() {
     try {
+      localStorage.clear()
       window.location.href = "/.auth/logout?post_logout_redirect_uri=/";
       setIsLoggedIn(false);  // Update the local state to reflect the logout
     } catch (error) {
