@@ -53,11 +53,12 @@ const Cardview = () => {
     setSelectedIndices([]);
   };
 
-  const handleSubmit = () => {
+  const handleDelete = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
     console.log("Selected Items:", selectedItems);
-    fetch(`http://flashcard-webapp.azurewebsites.net/notes/`, {
-      method: 'POST',
+  
+    fetch(`http://flashcard-webapp.azurewebsites.net/notes/<user_id>`, {
+      method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
       },
@@ -67,12 +68,14 @@ const Cardview = () => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        window.location.href = "/"
+        // Optionally, you can handle the success response if needed
+        console.log("Questions deleted successfully");
       })
       .catch(error => {
-        console.error("Error submitting questions:", error);
+        console.error("Error deleting questions:", error);
       });
   };
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -108,7 +111,7 @@ const Cardview = () => {
         ))}
       </div>
       <div className="Button-Flex">
-        <button class="btn btn-danger" onClick={handleSubmit}>Delete</button>
+        <button className='delete-button' onClick={handleDelete}>Delete</button>
       </div>
     </content>
   );
