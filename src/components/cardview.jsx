@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./cardview.css";
-const userinfo = await fetch("/.auth/me") 
+const userinfo = fetch("/.auth/me") 
 const userID = userinfo.userId
 console.log(userID)
 const Cardview = () => {
