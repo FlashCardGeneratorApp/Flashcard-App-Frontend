@@ -5,6 +5,7 @@ import Home from "./Home";
 import Cardview from "./cardview";
 import Login from "./Login";
 import Quiz from "./quiz";
+import CardviewDelete from "./cardview_delete";
 import "./Nav.css";
 const NotFound = () => <h2>404 Not Found</h2>;
 
@@ -73,10 +74,42 @@ const Nav = () => {
               </Link>
             </li>
           )}
+          {isLoggedIn && (
+            <li style={{ padding: "1%" }}>
+              <Link to="/cardview_delete" className="fancy">
+                <span className="text">Cards</span>
+                <span className="top-key" />
+                <span className="bottom-key-1" />
+                <span className="bottom-key-2" />
+              </Link>
+            </li>
+          )}
         </ul>
-        <h2 style={{ padding: "1%", width: "30%", textAlign: "center" }}>
-          FlashCard App
-        </h2>
+        {isLoggedIn && (
+          <h2
+            style={{
+              padding: "1%",
+              width: "30%",
+              textAlign: "center",
+              paddingLeft: "8%", // Apply padding-left only when isLoggedIn is true
+            }}
+          >
+            FlashCard App
+          </h2>
+        )}
+
+        {!isLoggedIn && (
+          <h2
+            style={{
+              padding: "1%",
+              width: "30%",
+              textAlign: "center",
+              // No paddingLeft when isLoggedIn is false
+            }}
+          >
+            FlashCard App
+          </h2>
+        )}
         <ul
           style={{
             listStyleType: "none",
@@ -103,6 +136,7 @@ const Nav = () => {
         <Route path="/cardview/:topic" element={<Cardview />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/cardview_delete" element={<CardviewDelete />}/>
       </Routes>
     </div>
   );
