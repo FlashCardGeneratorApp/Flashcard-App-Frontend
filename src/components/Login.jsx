@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 
 const LoginModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -34,8 +34,14 @@ const LoginModal = () => {
     setModalIsOpen(false);
   };
   async function Logout() {
-    navigate("/.auth/logout"); // Change from history.push to navigate
+    try {
+      window.location.href = "/.auth/logout?post_logout_redirect_uri=/";
+      setIsLoggedIn(false);  // Update the local state to reflect the logout
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
+  
   
   async function getUserInfo() {
     try {
@@ -51,6 +57,7 @@ const LoginModal = () => {
   return (
     <div>
       {isLoggedIn ? (
+<<<<<<< HEAD
       <button onClick={Logout} className="fancy">
         <span className="text">Logout</span>
         <span className="top-key"></span>
@@ -65,6 +72,23 @@ const LoginModal = () => {
         <span className="bottom-key-2"></span>
       </button>
     )}
+=======
+        <button onClick={Logout} className="fancy">
+          <span className="text">Logout</span>
+          <span className="top-key"></span>
+          <span className="bottom-key-1"></span>
+          <span className="bottom-key-2"></span>
+        </button>
+      ) : null}
+      {!isLoggedIn && (
+        <button onClick={openModal} className="fancy">
+          <span className="text">Login</span>
+          <span className="top-key"></span>
+          <span className="bottom-key-1"></span>
+          <span className="bottom-key-2"></span>
+        </button>
+      )}
+>>>>>>> 6254c386e80fa0d088615f9b81698e9beb02a36e
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -93,6 +117,10 @@ const LoginModal = () => {
       </Modal>
     </div>
   );
+  
 };
 
 export default LoginModal;
+
+
+
