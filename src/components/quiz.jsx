@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "./quiz.css";
 
 const Quiz = () => {
-  const { topic } = useParams();
   const Question_List = [
     {
       question: "What dynasty did Qin Shi Huang Found?",

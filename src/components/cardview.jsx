@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./cardview.css";
-const userinfo = fetch("/.auth/me") 
-const userID = userinfo.userId
-console.log(userID)
+const userID = localStorage.getItem("user-id")
 const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
@@ -25,7 +23,7 @@ const Cardview = () => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`/api/question/${topic}`); // Change to Django endpoint for AI Generation
+        const response = await fetch(`flashcard-webapp.azurewebsites.net/notes/generate/${topic}`); // Change to Django endpoint for AI Generation
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -57,7 +55,7 @@ const Cardview = () => {
   const handleSubmit = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
     console.log("Selected Items:", selectedItems);
-    fetch(`/api/question/`, {
+    fetch(`flashcard-webapp.azurewebsites.net/notes/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
