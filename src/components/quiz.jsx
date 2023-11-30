@@ -29,7 +29,7 @@ const Quiz = () => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.json();
+        const data = await response.json().questions; // In the form of [{obj},{obj}]
         setQuestionList(data);
         setIsLoading(false);
       } catch (error) {
@@ -40,7 +40,7 @@ const Quiz = () => {
     };
 
     fetchQuestionList();
-  }, [topic]);
+  }, []);
 
   const handleOptionClick = async (optionIndex) => {
     if (selectedOption === null) {
@@ -49,31 +49,7 @@ const Quiz = () => {
       const isCorrect = optionIndex === currentQuestion.answer;
       setIsAnswerCorrect(isCorrect);
         console.log({question: currentQuestion, selectedOption: optionIndex, isCorrect})
-      // Send a response to the backend API
-    //   try {
-    //     const response = await fetch('/api/record-response', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         // Add any other headers as needed
-    //       },
-    //       body: JSON.stringify({
-    //         question: currentQuestion, // Send the entire question object
-    //         selectedOption: optionIndex,
-    //         isCorrect,
-    //       }),
-    //     });
-  
-    //     if (!response.ok) {
-    //       throw new Error('Failed to record response');
-    //     }
-  
-    //     // Handle success if needed
-    //   } catch (error) {
-    //     console.error('Error recording response:', error);
-    //     // Handle error if needed
-    //   }
-    }
+      }
   };
   
   
@@ -105,7 +81,7 @@ const Quiz = () => {
 
   return (
     <content>
-      <h2>Topic: {topic}</h2>
+      <h2>Quiz</h2>
       {quizCompleted ? (
         <div>
           <h3>Congratulations! You've completed the quiz!</h3>
