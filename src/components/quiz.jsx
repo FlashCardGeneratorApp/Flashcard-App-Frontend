@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./quiz.css";
-
+const userID = localStorage.getItem("user-id")
 const Quiz = () => {
   const Question_List = [
     {
@@ -25,7 +25,7 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`/api/quiz/${topic}`);
+        const response = await fetch(`flashcard-webapp.azurewebsites.net/notes/${userID}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
