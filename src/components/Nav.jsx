@@ -73,6 +73,17 @@ const Nav = () => {
               </Link>
             </li>
           )}
+          {isLoggedIn && (
+            <li style={{ padding: "1%" }}>
+              <Link to="/cardview_delete" className="fancy">
+                <span className="text">Cards</span>
+                <span className="top-key" />
+                <span className="bottom-key-1" />
+                <span className="bottom-key-2" />
+              </Link>
+            </li>
+          )}
+          
         </ul>
         <h2 style={{ padding: "1%", width: "30%", textAlign: "center" }}>
           FlashCard App
