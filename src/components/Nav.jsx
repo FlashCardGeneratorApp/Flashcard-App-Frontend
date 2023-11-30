@@ -76,18 +76,39 @@ const Nav = () => {
           {isLoggedIn && (
             <li style={{ padding: "1%" }}>
               <Link to="/cardview_delete" className="fancy">
-                <span className="text">Cards</span>
+                <span className="text"></span>
                 <span className="top-key" />
                 <span className="bottom-key-1" />
                 <span className="bottom-key-2" />
               </Link>
             </li>
           )}
-          
         </ul>
-        <h2 style={{ padding: "1%", width: "30%", textAlign: "center" }}>
-          FlashCard App
-        </h2>
+        {isLoggedIn && (
+          <h2
+            style={{
+              padding: "1%",
+              width: "30%",
+              textAlign: "center",
+              paddingLeft: "8%", // Apply padding-left only when isLoggedIn is true
+            }}
+          >
+            FlashCard App
+          </h2>
+        )}
+
+        {!isLoggedIn && (
+          <h2
+            style={{
+              padding: "1%",
+              width: "30%",
+              textAlign: "center",
+              // No paddingLeft when isLoggedIn is false
+            }}
+          >
+            FlashCard App
+          </h2>
+        )}
         <ul
           style={{
             listStyleType: "none",
