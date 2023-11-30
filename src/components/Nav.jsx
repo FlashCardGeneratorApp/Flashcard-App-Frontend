@@ -76,7 +76,7 @@ const Nav = () => {
           {isLoggedIn && (
             <li style={{ padding: "1%" }}>
               <Link to="/cardview_delete" className="fancy">
-                <span className="text"></span>
+                <span className="text">Cards</span>
                 <span className="top-key" />
                 <span className="bottom-key-1" />
                 <span className="bottom-key-2" />
