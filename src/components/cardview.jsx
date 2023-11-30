@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./cardview.css";
-
+const userinfo = await fetch("/.auth/me") 
+const userID = userinfo.userId
 const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
@@ -55,10 +56,23 @@ const Cardview = () => {
   const handleSubmit = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
     console.log("Selected Items:", selectedItems);
-    // Implement further submission logic here
-    // TODO Commit and then Redirect
-};
-
+    fetch(`/api/question/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userid: userID, questions: selectedItems }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        window.location.href = "/"
+      })
+      .catch(error => {
+        console.error("Error submitting questions:", error);
+      });
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;

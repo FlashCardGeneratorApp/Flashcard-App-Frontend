@@ -57,22 +57,6 @@ const LoginModal = () => {
   return (
     <div>
       {isLoggedIn ? (
-<<<<<<< HEAD
-      <button onClick={Logout} className="fancy">
-        <span className="text">Logout</span>
-        <span className="top-key"></span>
-        <span className="bottom-key-1"></span>
-        <span className="bottom-key-2"></span>
-      </button>
-    ) : (
-      <button onClick={openModal} className="fancy">
-        <span className="text">Login</span>
-        <span className="top-key"></span>
-        <span className="bottom-key-1"></span>
-        <span className="bottom-key-2"></span>
-      </button>
-    )}
-=======
         <button onClick={Logout} className="fancy">
           <span className="text">Logout</span>
           <span className="top-key"></span>
@@ -88,7 +72,6 @@ const LoginModal = () => {
           <span className="bottom-key-2"></span>
         </button>
       )}
->>>>>>> 6254c386e80fa0d088615f9b81698e9beb02a36e
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
