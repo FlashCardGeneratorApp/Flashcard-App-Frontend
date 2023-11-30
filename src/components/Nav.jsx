@@ -5,6 +5,7 @@ import Home from "./Home";
 import Cardview from "./cardview";
 import Login from "./Login";
 import Quiz from "./quiz";
+import CardviewDelete from "./cardview_delete";
 import "./Nav.css";
 const NotFound = () => <h2>404 Not Found</h2>;
 
@@ -135,6 +136,7 @@ const Nav = () => {
         <Route path="/cardview/:topic" element={<Cardview />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/cardview_delete" element={<CardviewDelete />}/>
       </Routes>
     </div>
   );

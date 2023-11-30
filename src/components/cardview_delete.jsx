@@ -45,7 +45,7 @@ const Cardview = () => {
   const handleSubmit = async () => {
     // Implement deletion logic here based on selectedIndices
     try {
-      const response = await fetch("/api/delete-cards", {
+      const response = await fetch("/api/...../....", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
