@@ -33,14 +33,13 @@
   }
 
   .delete-button {
-    /* Your custom styles for the delete button */
-    /* For example: */
     background-color: #e74c3c;
     color: #fff;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-left: 1.5%;
 }
 
 .delete-button:hover {
