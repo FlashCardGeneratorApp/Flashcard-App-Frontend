@@ -53,7 +53,7 @@ const Cardview = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
     console.log("Selected Items:", selectedItems);
   
-    fetch(`http://flashcard-webapp.azurewebsites.net/notes/<${user_id}>`, {
+    fetch(`http://flashcard-webapp.azurewebsites.net/notes/<${userID}>`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
