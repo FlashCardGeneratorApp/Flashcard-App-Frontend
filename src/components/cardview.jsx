@@ -28,7 +28,7 @@ const Cardview = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setQuestionList(data);
+        setQuestionList(data.questions);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
