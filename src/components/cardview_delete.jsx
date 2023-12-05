@@ -7,13 +7,13 @@ const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
     {
-      id: 1,
+      _id: "656fa34f78e98dcbf5e04bbd",
       Question: "What dynasty did Qin Shi Huang Found?",
       Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
       Answer: 1,
     },
     {
-      id: 2,
+      __staticRouterHydrationDataid: 2,
       Question: "Who orchestrated the Long March?",
       Options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
       Answer: 2,
@@ -26,7 +26,7 @@ const Cardview = () => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`http://flashcard-webapp.azurewebsites.net/notes/generate/${topic}`); // Change to Django endpoint for AI Generation
+        const response = await fetch(`http://flashcard-webapp.azurewebsites.net/notes/${userID}`); // Change to Django endpoint for AI Generation
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -52,7 +52,7 @@ const Cardview = () => {
   };
 
   const handleDelete = () => {
-    const selectedItems = selectedIndices.map(index => questionList[index].id);
+    const selectedItems = selectedIndices.map(index => questionList[index]._id);
     console.log("Selected Items:", selectedItems);
   
     fetch(`http://flashcard-webapp.azurewebsites.net/notes`, {
