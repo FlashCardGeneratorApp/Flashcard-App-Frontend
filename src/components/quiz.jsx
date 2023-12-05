@@ -95,7 +95,7 @@ const Quiz = () => {
         options: shuffleArray(question.Options),
       }));
 
-      setQuestionList(shuffledQuestions);
+    setQuestionList(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswerCorrect(null);
