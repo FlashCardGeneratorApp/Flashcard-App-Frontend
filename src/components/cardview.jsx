@@ -8,12 +8,12 @@ const Cardview = () => {
     {
       question: "What dynasty did Qin Shi Huang Found?",
       options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: 1,
+      answer: "Han Dynasty",
     },
     {
       question: "Who orchestrated the Long March?",
       options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: 2,
+      answer: "Chiang Kai Shek",
     },
   ];
   const [questionList, setQuestionList] = useState([]);

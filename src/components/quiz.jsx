@@ -6,12 +6,12 @@ const Quiz = () => {
     {
       question: "What dynasty did Qin Shi Huang Found?",
       options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: 1,
+      answer: "Han Dynasty",
     },
     {
       question: "Who orchestrated the Long March?",
       options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: 2,
+      answer: "Chiang Kai Shek",
     },
   ];
 
@@ -30,27 +30,44 @@ const Quiz = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json().questions; // In the form of [{obj},{obj}]
-        setQuestionList(data);
+        const shuffledData = data.map((question) => ({
+          ...question,
+          options: shuffleArray(question.options),
+        }));
+        setQuestionList(shuffledData);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
-        setQuestionList(Question_List);
+        const shuffledQuestions = Question_List.map((question) => ({
+          ...question,
+          options: shuffleArray(question.options),
+        }));
+  
+        setQuestionList(shuffledQuestions);
         setIsLoading(false);
       }
     };
-
     fetchQuestionList();
   }, []);
-
+  
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+  
   const handleOptionClick = async (optionIndex) => {
     if (selectedOption === null) {
       setSelectedOption(optionIndex);
       const currentQuestion = questionList[currentQuestionIndex];
-      const isCorrect = optionIndex === currentQuestion.answer;
+      const isCorrect = currentQuestion.options[optionIndex] === currentQuestion.answer;
       setIsAnswerCorrect(isCorrect);
-        console.log({question: currentQuestion, selectedOption: optionIndex, isCorrect})
-      }
+      console.log({ question: currentQuestion, selectedOption: optionIndex, isCorrect });
+    }
   };
+  
   
   
 
@@ -99,7 +116,7 @@ const Quiz = () => {
                   key={optionIndex}
                   className={
                     selectedOption !== null
-                      ? optionIndex === currentQuestion.answer
+                      ? currentQuestion.options[selectedOption] === currentQuestion.answer && option === currentQuestion.answer
                         ? "correct-option"
                         : optionIndex === selectedOption
                         ? "incorrect-option"
@@ -122,6 +139,6 @@ const Quiz = () => {
       )}
     </content>
   );
-};
+          }  
 
 export default Quiz;
