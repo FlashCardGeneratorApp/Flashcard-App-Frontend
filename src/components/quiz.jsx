@@ -25,7 +25,7 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`http://flashcard-webapp.azurewebsites.net/notes/${userID}`);
+        const response = await fetch(`https://flashcard-webapp.azurewebsites.net/notes/${userID}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

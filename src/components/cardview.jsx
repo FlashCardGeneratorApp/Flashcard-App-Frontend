@@ -23,7 +23,7 @@ const Cardview = () => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`http://flashcard-webapp.azurewebsites.net/notes/generate/${topic}`); // Change to Django endpoint for AI Generation
+        const response = await fetch(`https://flashcard-webapp.azurewebsites.net/notes/generate/${topic}`); // Change to Django endpoint for AI Generation
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -54,7 +54,7 @@ const Cardview = () => {
 
   const handleSubmit = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
-    fetch(`http://flashcard-webapp.azurewebsites.net/notes/`, {
+    fetch(`https://flashcard-webapp.azurewebsites.net/notes/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
