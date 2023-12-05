@@ -29,8 +29,9 @@ const Quiz = () => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.json().questions; // In the form of [{obj},{obj}]
-        const shuffledData = data.map((question) => ({
+        const data = await response.json();
+        questions = data.questions // In the form of [{obj},{obj}]
+        const shuffledData = questions.map((question) => ({
           ...question,
           options: shuffleArray(question.options),
         }));
