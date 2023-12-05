@@ -80,35 +80,36 @@ const Cardview = () => {
   return (
     <content>
       <h2>Topic: {topic}</h2>
-    <div className="card-container">
-      {questionList.map((item, index) => (
-        <div
-          key={index}
-          className={selectedIndices.includes(index) ? "card clicked" : "card"}
-          onClick={() => handleClick(index)}
-        >
-          <h3>{item.question}</h3>
-          <ul className="options-list">
-            {item.options.map((option, optionIndex) => (
-              <li
-                key={optionIndex}
-                className={
-                  optionIndex === item.answer ? "answer-option" : "option"
-                }
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <div className="Button-Flex">
-      <button onClick={handleClear}>Clear</button>
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
+      <div className="card-container">
+        {questionList.map((item, index) => (
+          <div
+            key={index}
+            className={selectedIndices.includes(index) ? "card clicked" : "card"}
+            onClick={() => handleClick(index)}
+          >
+            <h3>{item.question}</h3>
+            <ul className="options-list">
+              {item.options.map((option, optionIndex) => (
+                <li
+                  key={optionIndex}
+                  className={
+                    option === item.answer ? "answer-option option" : "option"
+                  }
+                >
+                  {option}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="Button-Flex">
+        <button onClick={handleClear}>Clear</button>
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
     </content>
   );
 };
+
 
 export default Cardview;

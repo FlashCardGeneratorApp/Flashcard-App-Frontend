@@ -96,7 +96,7 @@ const Cardview = () => {
                 <li
                   key={optionIndex}
                   className={
-                    optionIndex === item.answer ? "answer-option" : "option"
+                    optionIndex === item.answer ? "answer-option option" : "option"
                   }
                 >
                   {option}
