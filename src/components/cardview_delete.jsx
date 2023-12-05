@@ -7,11 +7,13 @@ const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
     {
+      id: 1,
       question: "What dynasty did Qin Shi Huang Found?",
       options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
       answer: 1,
     },
     {
+      id: 2,
       question: "Who orchestrated the Long March?",
       options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
       answer: 2,
@@ -50,22 +52,22 @@ const Cardview = () => {
   };
 
   const handleDelete = () => {
-    const selectedItems = selectedIndices.map(index => questionList[index]);
+    const selectedItems = selectedIndices.map(index => questionList[index].id);
     console.log("Selected Items:", selectedItems);
   
-    fetch(`http://flashcard-webapp.azurewebsites.net/notes/<${userID}>`, {
+    fetch(`http://flashcard-webapp.azurewebsites.net/notes`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userid: userID, questions: selectedItems }),
+      body: JSON.stringify({question_id: selectedItems }),
     })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        // Optionally, you can handle the success response if needed
         console.log("Questions deleted successfully");
+        window.location.href = "/";
       })
       .catch(error => {
         console.error("Error deleting questions:", error);
@@ -73,9 +75,7 @@ const Cardview = () => {
   };
   
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+
 
   if (isLoading) {
     return <div>Loading...</div>;
