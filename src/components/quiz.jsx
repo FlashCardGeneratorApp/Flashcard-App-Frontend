@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./quiz.css";
-const userID = localStorage.getItem("user-id")
 const Quiz = () => {
-  const Question_List = [
+  const temp_question_list = [
     {
       Question: "What dynasty did Qin Shi Huang Found?",
       Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
@@ -23,23 +22,27 @@ const Quiz = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
+
     const fetchQuestionList = async () => {
       try {
+        var userID = localStorage.getItem("user-id")
         const response = await fetch(`https://flashcard-webapp.azurewebsites.net/notes/${userID}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        questions = data.questions // In the form of [{obj},{obj}]
-        const shuffledData = questions.map((question) => ({
-          ...question,
-          options: shuffleArray(question.Options),
-        }));
-        setQuestionList(shuffledData);
-        setIsLoading(false);
+        const shuffledData = shuffleArray(data.questions);
+
+      const shuffledQuestions = shuffledData.map((question) => ({
+        ...question,
+        options: shuffleArray(question.Options),
+      }));
+
+      setQuestionList(shuffledQuestions);
+      setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
-        const shuffledQuestions = Question_List.map((question) => ({
+        const shuffledQuestions = temp_question_list.map((question) => ({
           ...question,
           Options: shuffleArray(question.Options),
         }));
@@ -85,12 +88,14 @@ const Quiz = () => {
   };
 
   const handleRestartQuiz = () => {
-    const shuffledQuestions = Question_List.map((question) => ({
-      ...question,
-      Options: shuffleArray(question.Options),
-    }));
+    const shuffledData = shuffleArray(data.questions);
 
-    setQuestionList(shuffledQuestions);
+      const shuffledQuestions = shuffledData.map((question) => ({
+        ...question,
+        options: shuffleArray(question.Options),
+      }));
+
+      setQuestionList(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswerCorrect(null);
@@ -122,14 +127,14 @@ const Quiz = () => {
                 <li
                   key={optionIndex}
                   className={
-                    selectedOption !== null
-                      ? currentQuestion.Options[selectedOption] === currentQuestion.answer && option === currentQuestion.answer
-                        ? "correct-option"
-                        : optionIndex === selectedOption
-                        ? "incorrect-option"
-                        : "option"
-                      : "option"
-                  }
+  selectedOption !== null
+    ? currentQuestion.Options[selectedOption] === currentQuestion.Answer && option === currentQuestion.Answer
+      ? "correct-option"
+      : optionIndex === selectedOption
+      ? "incorrect-option"
+      : "option"
+    : "option"
+}
                   onClick={() => handleOptionClick(optionIndex)}
                 >
                   {option}
