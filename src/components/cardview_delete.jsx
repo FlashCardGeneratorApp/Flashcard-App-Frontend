@@ -8,15 +8,15 @@ const Cardview = () => {
   const Question_List = [
     {
       id: 1,
-      question: "What dynasty did Qin Shi Huang Found?",
-      options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: 1,
+      Question: "What dynasty did Qin Shi Huang Found?",
+      Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
+      Answer: 1,
     },
     {
       id: 2,
-      question: "Who orchestrated the Long March?",
-      options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: 2,
+      Question: "Who orchestrated the Long March?",
+      Options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
+      Answer: 2,
     },
   ];
   const [questionList, setQuestionList] = useState([]);
@@ -90,13 +90,13 @@ const Cardview = () => {
             className={selectedIndices.includes(index) ? "card clicked" : "card"}
             onClick={() => handleClick(index)}
           >
-            <h3>{item.question}</h3>
+            <h3>{item.Question}</h3>
             <ul className="options-list">
-              {item.options.map((option, optionIndex) => (
+              {item.Options.map((option, optionIndex) => (
                 <li
                   key={optionIndex}
                   className={
-                    optionIndex === item.answer ? "answer-option option" : "option"
+                    optionIndex === item.Answer ? "answer-option option" : "option"
                   }
                 >
                   {option}

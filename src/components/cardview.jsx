@@ -6,14 +6,14 @@ const Cardview = () => {
   const { topic } = useParams();
   const Question_List = [
     {
-      question: "What dynasty did Qin Shi Huang Found?",
-      options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: "Han Dynasty",
+      Question: "What dynasty did Qin Shi Huang Found?",
+      Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
+      Answer: "Han Dynasty",
     },
     {
-      question: "Who orchestrated the Long March?",
-      options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: "Chiang Kai Shek",
+      Question: "Who orchestrated the Long March?",
+      Options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
+      Answer: "Chiang Kai Shek",
     },
   ];
   const [questionList, setQuestionList] = useState([]);
@@ -54,13 +54,12 @@ const Cardview = () => {
 
   const handleSubmit = () => {
     const selectedItems = selectedIndices.map(index => questionList[index]);
-    console.log("Selected Items:", selectedItems);
     fetch(`http://flashcard-webapp.azurewebsites.net/notes/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userid: userID, questions: selectedItems }),
+      body: JSON.stringify({ user_id: userID, questions: selectedItems }),
     })
       .then(response => {
         if (!response.ok) {
@@ -87,13 +86,13 @@ const Cardview = () => {
             className={selectedIndices.includes(index) ? "card clicked" : "card"}
             onClick={() => handleClick(index)}
           >
-            <h3>{item.question}</h3>
+            <h3>{item.Question}</h3>
             <ul className="options-list">
-              {item.options.map((option, optionIndex) => (
+              {item.Options.map((option, optionIndex) => (
                 <li
                   key={optionIndex}
                   className={
-                    option === item.answer ? "answer-option option" : "option"
+                    option === item.Answer ? "answer-option option" : "option"
                   }
                 >
                   {option}
