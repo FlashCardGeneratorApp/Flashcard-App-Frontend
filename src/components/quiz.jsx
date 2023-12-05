@@ -84,6 +84,12 @@ const Quiz = () => {
   };
 
   const handleRestartQuiz = () => {
+    const shuffledQuestions = Question_List.map((question) => ({
+      ...question,
+      options: shuffleArray(question.options),
+    }));
+
+    setQuestionList(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswerCorrect(null);
