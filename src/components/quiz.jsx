@@ -4,14 +4,14 @@ const userID = localStorage.getItem("user-id")
 const Quiz = () => {
   const Question_List = [
     {
-      question: "What dynasty did Qin Shi Huang Found?",
-      options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: "Han Dynasty",
+      Question: "What dynasty did Qin Shi Huang Found?",
+      Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
+      Answer: "Han Dynasty",
     },
     {
-      question: "Who orchestrated the Long March?",
-      options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: "Chiang Kai Shek",
+      Question: "Who orchestrated the Long March?",
+      Options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
+      Answer: "Chiang Kai Shek",
     },
   ];
 
@@ -33,7 +33,7 @@ const Quiz = () => {
         questions = data.questions // In the form of [{obj},{obj}]
         const shuffledData = questions.map((question) => ({
           ...question,
-          options: shuffleArray(question.options),
+          options: shuffleArray(question.Options),
         }));
         setQuestionList(shuffledData);
         setIsLoading(false);
@@ -41,7 +41,7 @@ const Quiz = () => {
         console.error("Error fetching question list:", error);
         const shuffledQuestions = Question_List.map((question) => ({
           ...question,
-          options: shuffleArray(question.options),
+          Options: shuffleArray(question.Options),
         }));
   
         setQuestionList(shuffledQuestions);
@@ -63,7 +63,7 @@ const Quiz = () => {
     if (selectedOption === null) {
       setSelectedOption(optionIndex);
       const currentQuestion = questionList[currentQuestionIndex];
-      const isCorrect = currentQuestion.options[optionIndex] === currentQuestion.answer;
+      const isCorrect = currentQuestion.Options[optionIndex] === currentQuestion.Answer;
       setIsAnswerCorrect(isCorrect);
       console.log({ question: currentQuestion, selectedOption: optionIndex, isCorrect });
     }
@@ -87,7 +87,7 @@ const Quiz = () => {
   const handleRestartQuiz = () => {
     const shuffledQuestions = Question_List.map((question) => ({
       ...question,
-      options: shuffleArray(question.options),
+      Options: shuffleArray(question.Options),
     }));
 
     setQuestionList(shuffledQuestions);
@@ -116,14 +116,14 @@ const Quiz = () => {
       ) : (
         <div className="card-container">
           <div className="card">
-            <h3>{currentQuestion.question}</h3>
+            <h3>{currentQuestion.Question}</h3>
             <ul className="options-list">
-              {currentQuestion.options.map((option, optionIndex) => (
+              {currentQuestion.Options.map((option, optionIndex) => (
                 <li
                   key={optionIndex}
                   className={
                     selectedOption !== null
-                      ? currentQuestion.options[selectedOption] === currentQuestion.answer && option === currentQuestion.answer
+                      ? currentQuestion.Options[selectedOption] === currentQuestion.answer && option === currentQuestion.answer
                         ? "correct-option"
                         : optionIndex === selectedOption
                         ? "incorrect-option"
