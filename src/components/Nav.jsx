@@ -107,7 +107,7 @@ const Nav = () => {
               // No paddingLeft when isLoggedIn is false
             }}
           >
-            FlashCard App
+            FlashLearn
           </h2>
         )}
         <ul
