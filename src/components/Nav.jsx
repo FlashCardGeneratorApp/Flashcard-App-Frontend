@@ -94,7 +94,7 @@ const Nav = () => {
               paddingLeft: "8%", // Apply padding-left only when isLoggedIn is true
             }}
           >
-            FlashCard App
+            FlashLearn
           </h2>
         )}
 
