@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./quiz.css";
-const userID = localStorage.getItem("user-id")
 const Quiz = () => {
-  const Question_List = [
+  const temp_question_list = [
     {
-      question: "What dynasty did Qin Shi Huang Found?",
-      options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
-      answer: 1,
+      Question: "What dynasty did Qin Shi Huang Found?",
+      Options: ["Qing Dynasty", "Han Dynasty", "Song Dynasty", "Zhou Dynasty"],
+      Answer: "Han Dynasty",
     },
     {
-      question: "Who orchestrated the Long March?",
-      options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
-      answer: 2,
+      Question: "Who orchestrated the Long March?",
+      Options: ["Bo Gu", "Mao Ze Dong", "Chiang Kai Shek", "Zhou Enlai"],
+      Answer: "Chiang Kai Shek",
     },
   ];
 
@@ -23,35 +22,56 @@ const Quiz = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
+
     const fetchQuestionList = async () => {
       try {
-        const response = await fetch(`http://flashcard-webapp.azurewebsites.net/notes/${userID}`);
+        var userID = localStorage.getItem("user-id")
+        const response = await fetch(`https://flashcard-webapp.azurewebsites.net/notes/${userID}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.json().questions; // In the form of [{obj},{obj}]
-        const questions = data.questions || [];
-        setQuestionList(questions);
-        setIsLoading(false);
+        const data = await response.json();
+        const shuffledData = shuffleArray(data.questions);
+
+      const shuffledQuestions = shuffledData.map((question) => ({
+        ...question,
+        options: shuffleArray(question.Options),
+      }));
+
+      setQuestionList(shuffledQuestions);
+      setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
-        setQuestionList(Question_List);
+        const shuffledQuestions = temp_question_list.map((question) => ({
+          ...question,
+          Options: shuffleArray(question.Options),
+        }));
+  
+        setQuestionList(shuffledQuestions);
         setIsLoading(false);
       }
     };
-
     fetchQuestionList();
   }, []);
-
+  
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+  
   const handleOptionClick = async (optionIndex) => {
     if (selectedOption === null) {
       setSelectedOption(optionIndex);
       const currentQuestion = questionList[currentQuestionIndex];
-      const isCorrect = optionIndex === currentQuestion.answer;
+      const isCorrect = currentQuestion.Options[optionIndex] === currentQuestion.Answer;
       setIsAnswerCorrect(isCorrect);
-        console.log({question: currentQuestion, selectedOption: optionIndex, isCorrect})
-      }
+      console.log({ question: currentQuestion, selectedOption: optionIndex, isCorrect });
+    }
   };
+  
   
   
 
@@ -68,6 +88,14 @@ const Quiz = () => {
   };
 
   const handleRestartQuiz = () => {
+    const shuffledData = shuffleArray(data.questions);
+
+      const shuffledQuestions = shuffledData.map((question) => ({
+        ...question,
+        options: shuffleArray(question.Options),
+      }));
+
+    setQuestionList(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswerCorrect(null);
@@ -93,20 +121,20 @@ const Quiz = () => {
       ) : (
         <div className="card-container">
           <div className="card">
-            <h3>{currentQuestion.question}</h3>
+            <h3>{currentQuestion.Question}</h3>
             <ul className="options-list">
-              {currentQuestion.options.map((option, optionIndex) => (
+              {currentQuestion.Options.map((option, optionIndex) => (
                 <li
                   key={optionIndex}
                   className={
-                    selectedOption !== null
-                      ? optionIndex === currentQuestion.answer
-                        ? "correct-option"
-                        : optionIndex === selectedOption
-                        ? "incorrect-option"
-                        : "option"
-                      : "option"
-                  }
+  selectedOption !== null
+    ? currentQuestion.Options[selectedOption] === currentQuestion.Answer && option === currentQuestion.Answer
+      ? "correct-option"
+      : optionIndex === selectedOption
+      ? "incorrect-option"
+      : "option"
+    : "option"
+}
                   onClick={() => handleOptionClick(optionIndex)}
                 >
                   {option}
@@ -123,6 +151,6 @@ const Quiz = () => {
       )}
     </content>
   );
-};
+          }  
 
 export default Quiz;
