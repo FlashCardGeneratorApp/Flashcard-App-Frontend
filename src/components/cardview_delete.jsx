@@ -65,7 +65,7 @@ const Cardview = () => {
           throw new Error("Network response was not ok");
         }
         // Optionally, you can handle the success response if needed
-        console.log("Questions deleted successfully");
+        console.log("Question(s) deleted successfully");
       })
       .catch(error => {
         console.error("Error deleting questions:", error);

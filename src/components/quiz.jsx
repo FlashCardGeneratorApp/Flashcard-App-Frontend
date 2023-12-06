@@ -30,7 +30,8 @@ const Quiz = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json().questions; // In the form of [{obj},{obj}]
-        setQuestionList(data);
+        const questions = data.questions || [];
+        setQuestionList(questions);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching question list:", error);
