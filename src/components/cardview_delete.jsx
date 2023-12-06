@@ -84,27 +84,33 @@ const Cardview = () => {
   return (
     <content>
       <div className="card-container">
-        {questionList.map((item, index) => (
-          <div
-            key={index}
-            className={selectedIndices.includes(index) ? "card clicked" : "card"}
-            onClick={() => handleClick(index)}
-          >
-            <h3>{item.Question}</h3>
-            <ul className="options-list">
-              {item.Options.map((option, optionIndex) => (
-                <li
-                  key={optionIndex}
-                  className={
-                    optionIndex === item.Answer ? "answer-option option" : "option"
-                  }
-                >
-                  {option}
-                </li>
-              ))}
-            </ul>
+        {questionList.length > 0 ? (
+          questionList.map((item, index) => (
+            <div
+              key={index}
+              className={selectedIndices.includes(index) ? "card clicked" : "card"}
+              onClick={() => handleClick(index)}
+            >
+              <h3>{item.Question}</h3>
+              <ul className="options-list">
+                {item.Options.map((option, optionIndex) => (
+                  <li
+                    key={optionIndex}
+                    className={
+                      optionIndex === item.Answer ? "answer-option option" : "option"
+                    }
+                  >
+                    {option}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <div>
+            <p>No questions available. Please add some questions.</p>
           </div>
-        ))}
+        )}
       </div>
       <div className="Button-Flex">
         <button className='delete-button' onClick={handleDelete}>Delete</button>
