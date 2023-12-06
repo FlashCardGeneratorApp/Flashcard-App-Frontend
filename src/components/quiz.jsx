@@ -31,6 +31,7 @@ const Quiz = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+
         const shuffledData = shuffleArray(data.questions);
 
       const shuffledQuestions = shuffledData.map((question) => ({
@@ -120,28 +121,34 @@ const Quiz = () => {
         </div>
       ) : (
         <div className="card-container">
-          <div className="card">
-            <h3>{currentQuestion.Question}</h3>
-            <ul className="options-list">
-              {currentQuestion.Options.map((option, optionIndex) => (
-                <li
-                  key={optionIndex}
-                  className={
-  selectedOption !== null
-    ? currentQuestion.Options[selectedOption] === currentQuestion.Answer && option === currentQuestion.Answer
-      ? "correct-option"
-      : optionIndex === selectedOption
-      ? "incorrect-option"
-      : "option"
-    : "option"
-}
-                  onClick={() => handleOptionClick(optionIndex)}
-                >
-                  {option}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {questionList.length > 0 ? (
+            <div className="card">
+              <h3>{currentQuestion.Question}</h3>
+              <ul className="options-list">
+                {currentQuestion.Options.map((option, optionIndex) => (
+                  <li
+                    key={optionIndex}
+                    className={
+                      selectedOption !== null
+                        ? currentQuestion.Options[selectedOption] === currentQuestion.Answer && option === currentQuestion.Answer
+                          ? "correct-option"
+                          : optionIndex === selectedOption
+                          ? "incorrect-option"
+                          : "option"
+                        : "option"
+                    }
+                    onClick={() => handleOptionClick(optionIndex)}
+                  >
+                    {option}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <p>No questions available. Please add some questions.</p>
+            </div>
+          )}
           {selectedOption !== null && (
             <div className="Button-Flex">
               <button onClick={handleNextQuestion}>Next Question</button>
@@ -151,6 +158,6 @@ const Quiz = () => {
       )}
     </content>
   );
-          }  
+};
 
 export default Quiz;
