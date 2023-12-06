@@ -44,8 +44,7 @@ const Nav = () => {
             listStyleType: "none",
             display: "flex",
             justifyContent: "flex-start",
-            padding: "1%",
-            width: "30%",
+            padding: "1%"
           }}
         >
           <li style={{ padding: "1%", marginLeft: "10%" }}>
