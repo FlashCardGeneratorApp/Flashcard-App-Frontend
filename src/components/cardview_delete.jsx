@@ -112,9 +112,11 @@ const Cardview = () => {
           </div>
         )}
       </div>
-      <div className="Button-Flex">
-        <button className='delete-button' onClick={handleDelete}>Delete</button>
-      </div>
+      {questionList.length > 0 && (
+        <div className="Button-Flex">
+          <button className='delete-button' onClick={handleDelete}>Delete</button>
+        </div>
+      )}
     </content>
   );
 };
