@@ -75,7 +75,7 @@ const Home = () => {
         </p>
       ) : (
         <div>
-          Insert generic homepage content for non-logged in user
+          Welcome to FlashLearn! Please login to start generating flashcards.
         </div>
       )}
     </div>
