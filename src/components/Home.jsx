@@ -50,7 +50,7 @@ const Home = () => {
       {isLoggedIn ? (
         <p style={{ margin: 'auto', width: '50%', textAlign: 'center' }}>
           <div class="input-wrapper">
-          <input style={{ width: '100%', height: '40px' }} 
+          <input style={{ width: '100%', height: '40px', color: 'black' }} 
                 type="text" placeholder="Enter a topic you would like to learn..." 
                 name="text" 
                 class="input" 
